@@ -1,0 +1,12 @@
+# Default ignored files
+/shelf/
+
+/out/
+
+*.iml
+
+/.idea/
+/Sprint1/tutorial_y_recursos.txt
+/Sprint1/CollectionSlices/
+**/.idea/
+**/out/
