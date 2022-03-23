@@ -4,7 +4,7 @@
 /out/
 
 *.iml
-
+.DS_Store
 /.idea/
 **/.idea/
 **/out/
