@@ -1,19 +1,26 @@
 package repositories;
 
-import entities.Florist;
+import DataBase.Database;
+import entities.Product;
 import entities.Tree;
+
+import java.util.List;
 
 public class TreeRepository {
 
-    private Florist florist;
+    private Database database;
 
-    public TreeRepository(Florist florist) {
-        this.florist = florist;
+    public TreeRepository(Database database) {
+        this.database = database;
     }
 
-    public void addTree (String name, double price, double height ){
+    public Tree createTree(String name, double price, double height){
+        return new Tree(name, price, height);
+    }
 
-        florist.getWarehouse().getTrees().add(new Tree(name, price, height));
+    public void addTree (Tree tree ){
+
+        database.getTrees().add(tree);
 
     }
 
@@ -22,39 +29,29 @@ public class TreeRepository {
         boolean exist = false;
         int i = 0;
 
-        while (!exist && i< florist.getWarehouse().getTrees().size()) {
+        while (!exist && i< database.getTrees().size()) {
 
-            if (id == florist.getWarehouse().getTrees().get(i).getId()) {
+            if (id == database.getTrees().get(i).getId()) {
 
                 exist = true;
-                florist.getWarehouse().getTrees().remove(florist.getWarehouse().getTrees().get(i));
+                database.getTrees().remove(i);
 
             }
             i++;
         }
     }
 
-    public void stock(){
-        System.out.println("TREES:");
-        florist.getWarehouse().getTrees().forEach(x -> {
-
-            Tree tree = (Tree) x;
-            System.out.println("Id: " + tree.getId() +
-                    " Name: " + tree.getName() +
-                    " Height: " + tree.getHeight() +
-                    " Price: " + tree.getPrice());
-        } );
+    public int getTreeStockQuantity(){
+        return database.getTrees().size();
     }
 
-    public void stockQuantity(){
-
-        System.out.println("TREES: " + florist.getWarehouse().getTrees().size());
-
+    public List<Product> getTreesFromDatabase(){
+        return database.getTrees();
     }
 
-    public double totalPriceTree(int i){
+    public double getTreePrice(int i){
 
-        return florist.getWarehouse().getTrees().get(i).getPrice();
+        return database.getTrees().get(i).getPrice();
 
     }
 

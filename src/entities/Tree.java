@@ -14,7 +14,7 @@ public class Tree extends Product {
     }
 
     @Override
-    String showInfo() {
+    public String showInfo() {
         return "ID: " + super.id + "\nNombre árbol: " + super.name + "\nAltura: " + this.height + "\nPrecio: " + super.price + "€";
     }
 }

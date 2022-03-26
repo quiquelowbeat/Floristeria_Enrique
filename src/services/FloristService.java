@@ -1,32 +1,50 @@
 package services;
 
 import entities.Florist;
+import entities.Product;
+import repositories.TicketRepository;
 import repositories.TreeRepository;
+
+import java.util.List;
 
 public class FloristService {
 
     private TreeRepository treeRepository;
-    private Florist florist;
+    private TicketRepository ticketRepository;
 
-    public FloristService(TreeRepository treeRepository, Florist florist) {
+
+
+    public FloristService(TreeRepository treeRepository, TicketRepository ticketRepository) {
         this.treeRepository = treeRepository;
-        this.florist = florist;
+        this.ticketRepository = ticketRepository;
     }
 
     public FloristService(TreeRepository treeRepository) {
         this.treeRepository = treeRepository;
     }
 
-    public void TotalValue(){
-        double result = 0;
-        for(int i = 0; i<florist.getWarehouse().getTrees().size(); i++){
+    public void createStockFlorist(Florist florist){
 
-            result += treeRepository.totalPriceTree(i);
+        florist.getProducts().put("Tree", treeRepository.getTreeStockQuantity()); // Falta añadir las entidades que faltan
+
+    }
+
+    public double getTotalValue(){
+        double result = 0;
+        for(int i = 0; i<treeRepository.getTreeStockQuantity(); i++){
+
+            result += treeRepository.getTreePrice(i);
 
         }
 
-        System.out.println(result);
+        return result;
 
     }
+
+    public List<Product> getTrees() {
+
+        return treeRepository.getTreesFromDatabase();
+    }
+
 
 }

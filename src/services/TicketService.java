@@ -1,38 +1,26 @@
 package services;
 
-import entities.Florist;
 import entities.Product;
 import entities.Ticket;
 import entities.Tree;
+import repositories.TicketRepository;
 
 
 public class TicketService {
 
-    private Ticket ticket;
+    private TicketRepository ticketRepository;
 
-    public TicketService(Ticket ticket) {
-        this.ticket = ticket;
+    public TicketService ( TicketRepository ticketRepository) {
+        this.ticketRepository = ticketRepository;
     }
 
-    public void addTree(int id, Florist florist) {
+    public void addProduct(Ticket ticket, Product product) {
 
-        boolean exist = false;
-        int i = 0;
+        ticket.getProducts().add(product);
 
-        while (!exist && i < florist.getWarehouse().getTrees().size()) {
-
-            if (id == florist.getWarehouse().getTrees().get(i).getId()) {
-
-                exist = true;
-
-                ticket.getProducts().add(florist.getWarehouse().getTrees().get(i));
-
-            }
-            i++;
-        }
     }
 
-    public void total() {
+    public void total(Ticket ticket) {
 
         double totalPriceTicket = 0;
 
@@ -44,27 +32,7 @@ public class TicketService {
         ticket.setTotal(totalPriceTicket);
     }
 
-    public void showInfoTicket (){
 
-        System.out.println("Ticket number: " + ticket.getNumTicket() +
-                            "\n Date: " + ticket.getDate());
 
-        for (Product product: ticket.getProducts()){
-
-            if (product instanceof Tree){
-
-                Tree tree = (Tree) product;
-
-                System.out.println("Id: " + tree.getId() +
-                                    " Name: " + tree.getName() +
-                                    " Height: " + tree.getHeight() +
-                                    " Price: " + tree.getPrice());
-
-            }
-        }
-
-        System.out.println("Total:" + ticket.getTotal());
-
-    }
 
 }

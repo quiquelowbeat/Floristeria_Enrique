@@ -19,6 +19,13 @@ public class Ticket {
         total = 0;
     }
 
+    public Ticket(LocalDate date) {
+        numTicket = numTicketGen++;
+        this.date = date;
+        products = new ArrayList<>();
+        total = 0;
+    }
+
     public int getNumTicket() {
         return numTicket;
     }
@@ -46,5 +53,7 @@ public class Ticket {
     public void setTotal(double total) {
         this.total = total;
     }
+
+
 
 }

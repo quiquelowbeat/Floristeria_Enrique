@@ -6,12 +6,12 @@ import entities.Ticket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Warehouse {
+public class Database {
 
     private List<Product> trees;
     private List<Ticket> tickets;
 
-    public Warehouse() {
+    public Database() {
 
         trees = new ArrayList<>();
         tickets = new ArrayList<>();

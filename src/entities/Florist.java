@@ -1,9 +1,6 @@
 package entities;
 
-import DataBase.Warehouse;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class Florist {
 
@@ -12,18 +9,16 @@ public class Florist {
     private String name;
     private String address;
     private String phoneNum;
-    private Warehouse warehouse;
-    /*private List<Product> trees;
-    private List<Ticket> tickets;*/
+    private HashMap<String, Integer> products;
 
-    public Florist (String name, String address, String phoneNum) {
+
+    public Florist(String name, String address, String phoneNum) {
         idFlorist = idGenerator++;
         this.name = name;
         this.address = address;
         this.phoneNum = phoneNum;
-        warehouse = new Warehouse();
-        /*trees = new ArrayList<>();
-        tickets = new ArrayList<>();*/
+        products = new HashMap<>();
+
     }
 
     public int getIdFlorist() {
@@ -54,15 +49,11 @@ public class Florist {
         this.phoneNum = phoneNum;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
+    public HashMap<String, Integer> getProducts() {
+        return products;
     }
 
-    /*public List<Product> getTrees() {
-        return trees;
+    public void setProducts(HashMap<String, Integer> products) {
+        this.products = products;
     }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }*/
 }
