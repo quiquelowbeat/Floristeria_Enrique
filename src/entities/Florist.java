@@ -9,7 +9,7 @@ public class Florist {
     private String name;
     private String address;
     private String phoneNum;
-    private HashMap<String, Integer> products;
+    public HashMap<String, Integer> products;
 
 
     public Florist(String name, String address, String phoneNum) {

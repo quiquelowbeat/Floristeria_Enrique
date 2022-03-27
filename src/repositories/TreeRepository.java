@@ -3,6 +3,7 @@ package repositories;
 import DataBase.Database;
 import entities.Product;
 import entities.Tree;
+import vista.View;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class TreeRepository {
             }
             i++;
         }
+        View.showRemoveMessageConfirmation(exist);
     }
 
     public int getTreeStockQuantity(){
@@ -55,4 +57,17 @@ public class TreeRepository {
 
     }
 
+    public void updateTreePrice(int id, double price){
+        boolean exist = false;
+        int i = 0;
+
+        while(!exist && i<database.getTrees().size()){
+            if (id == database.getTrees().get(i).getId()){
+                exist = true;
+                database.getTrees().get(i).setPrice(price);
+            }
+            i++;
+        }
+
+    }
 }
