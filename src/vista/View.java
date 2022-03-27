@@ -8,7 +8,7 @@ import java.util.List;
 
 public class View {
 
-    public void showStock(List<Product> trees, List<Product> flowers, List<Product> decorations) { //Falta añadir los otros productos
+    public void showStock(List<Product> trees, List<Product> flowers, List<Product> decorations) {
         System.out.println("TREES:");
         trees.forEach(x -> {
             Tree tree = (Tree) x;
@@ -48,34 +48,33 @@ public class View {
         System.out.println("DECOR STOCK: " + stockProducts.get("Decorations"));
     }
 
-    public void showInfoTicket (Ticket ticket){
+    public void showInfoTicket(Ticket ticket){
 
         System.out.println("Ticket number: " + ticket.getNumTicket() +
                 "\nDate: " + ticket.getDate());
 
-        for (Product product: ticket.getProducts()){
+        for (Product product: ticket.getProducts()) {
 
-            if (product instanceof Tree){
-
-                Tree tree = (Tree) product;
+            if (product instanceof Tree tree) {
 
                 System.out.println(tree.showInfo());
 
-            } else if (product instanceof Flower){
-
-                Flower flower = (Flower) product;
+            } else if (product instanceof Flower flower) {
 
                 System.out.println(flower.showInfo());
+
+            } else if (product instanceof Decor decor) {
+
+                System.out.println(decor.showInfo());
             }
         }
 
-        System.out.println("Total:" + ticket.getTotal());
-
+        System.out.println("TOTAL TICKET: " + ((double)Math.round(ticket.getTotal() * 100d) / 100d) + "€");
     }
 
     public void showOldTickets(List<Ticket> oldTickets){
 
-        oldTickets.forEach(x -> showInfoTicket(x));
+        oldTickets.forEach(this::showInfoTicket);
 
     }
 

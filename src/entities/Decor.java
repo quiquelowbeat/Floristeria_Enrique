@@ -2,12 +2,16 @@ package entities;
 
 public class Decor extends Product {
 
-    public enum Material {WOOD, PLASTIC};
+    public enum Material {WOOD, PLASTIC}
     private String typeOfMaterial;
 
     public Decor(String name, double price, Material material){
         super(name, price);
-        this.typeOfMaterial = material.toString().toLowerCase();
+        if(material.equals(Material.WOOD)){
+            this.typeOfMaterial = "madera";
+        } else {
+            this.typeOfMaterial = "plástico";
+        }
     }
 
     public String getMaterial() {
