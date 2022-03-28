@@ -107,10 +107,12 @@ public class App {
 
         view.showTotalValueFlorist(floristService.getTotalValue());
 
-        treeRepository.removeTree(2); // Test View.showRemoveMessageConfirmation();
+        treeRepository.removeTree(2);
         treeRepository.removeTree(9);
         flowerRepository.removeFlower(7);
         decorRepository.removeDecor(13);
+        View.showRemoveMessageConfirmation(treeRepository.removeTree(13));
+        floristService.createStockFlorist(florist);
 
         view.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
 

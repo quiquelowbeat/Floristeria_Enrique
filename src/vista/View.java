@@ -69,7 +69,7 @@ public class View {
             }
         }
 
-        System.out.println("TOTAL TICKET: " + ((double)Math.round(ticket.getTotal() * 100d) / 100d) + "€");
+        System.out.println("TICKET TOTAL: " + ((double)Math.round(ticket.getTotal() * 100d) / 100d) + "€");
     }
 
     public void showOldTickets(List<Ticket> oldTickets){
@@ -78,7 +78,7 @@ public class View {
 
     }
 
-    public static void showRemoveMessageConfirmation(boolean exist){
+    public static void showRemoveMessageConfirmation(boolean exist){ // Revisar
         if(exist){
             System.out.println("Producto borrado con éxito.");
         } else {

@@ -25,7 +25,7 @@ public class TreeRepository {
 
     }
 
-    public void removeTree (int id){
+    public boolean removeTree (int id){
 
         boolean exist = false;
         int i = 0;
@@ -40,7 +40,7 @@ public class TreeRepository {
             }
             i++;
         }
-        View.showRemoveMessageConfirmation(exist);
+       return exist;
     }
 
     public int getTreeStockQuantity(){
