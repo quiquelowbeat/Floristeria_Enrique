@@ -57,7 +57,8 @@ public class TreeRepository {
 
     }
 
-    public void updateTreePrice(int id, double price){
+    // Testing update (CRUD)
+    /*public void updateTreePrice(int id, double price){
         boolean exist = false;
         int i = 0;
 
@@ -69,5 +70,5 @@ public class TreeRepository {
             i++;
         }
 
-    }
+    }*/
 }
