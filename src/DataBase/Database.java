@@ -73,25 +73,25 @@ public class Database {
         try {
             readFile = new ObjectInputStream(new FileInputStream("./Database/trees_db.txt"));
             List<Product> newListTreesTest = (ArrayList<Product>) readFile.readObject(); // Hacemos cast porque readFile devuelve un Object.
-            /*newListTreesTest.forEach(x -> {
+            newListTreesTest.forEach(x -> {
                 Tree tree = (Tree) x;
                 System.out.println(tree.showInfo());
-            });*/
+            });
             readFile = new ObjectInputStream(new FileInputStream("./Database/flowers_db.txt"));
             List<Product> newListFlowersTest = (ArrayList<Product>) readFile.readObject();
-            /*newListFlowersTest.forEach(x -> {
+            newListFlowersTest.forEach(x -> {
                 Flower flower = (Flower) x;
                 System.out.println(flower.showInfo());
-            });*/
+            });
             readFile = new ObjectInputStream(new FileInputStream("./Database/decor_db.txt"));
             List<Product> newListDecorTest = (ArrayList<Product>) readFile.readObject();
-            /*newListDecorTest.forEach(x -> {
+            newListDecorTest.forEach(x -> {
                 Decor decor = (Decor) x;
                 System.out.println(decor.showInfo());
-            });*/
+            });
             readFile = new ObjectInputStream(new FileInputStream("./Database/tickets_db.txt"));
             List<Ticket> newListTicketTest = (ArrayList<Ticket>) readFile.readObject();
-            // newListTicketTest.forEach(x -> View.showInfoTicket(x));
+            newListTicketTest.forEach(x -> View.showInfoTicket(x));
 
         } catch (ClassNotFoundException | IOException e) {
             System.out.println("FILE NOT FOUND.");

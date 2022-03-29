@@ -1,4 +1,5 @@
 import entities.*;
+import tools.Keyboard;
 import repositories.DecorRepository;
 import repositories.FlowerRepository;
 import repositories.TicketRepository;
@@ -15,9 +16,8 @@ public class App {
 
     public static void main(String[] args) throws IOException {
 
-        Florist florist = new Florist("Margarita", "C/ Peru 254", "698574526");
 
-        // View view = new View();
+        Florist florist = new Florist("Margarita", "C/ Peru 254", "698574526");
 
         DataBase.Database database = new DataBase.Database();
 
@@ -27,8 +27,91 @@ public class App {
         TicketRepository ticketRepository = new TicketRepository(database);
 
         FloristService floristService = new FloristService(treeRepository,flowerRepository,decorRepository,ticketRepository);
+        TicketService ticketService = new TicketService(ticketRepository,treeRepository, flowerRepository, decorRepository);
 
-        Tree tree = new Tree("Manzano", 25.45, 2.4);
+        //------------- Menu ------------------
+
+        String choice;
+        do{
+            View.chooseOption();
+            choice = Keyboard.readString("");
+            if (!isBetween0And11(choice)){
+                //System.out.println("Select option between 0 y 7.");
+                View.chooseOption();
+                choice = Keyboard.readString("");
+            }else{
+                switch (choice){
+
+                    case "0":
+                        View.closedSoftware();
+                        break;
+                    case "1":
+
+                        treeRepository.addTree(treeRepository.createTree(Keyboard.readString("ENTER NAME."),
+                                                                            Keyboard.readDouble("ENTER PRICE"),
+                                                                            Keyboard.readDouble("ENTER HEIGHT")));
+                        break;
+                    case "2":
+                        flowerRepository.addFlower(flowerRepository.createFlower(Keyboard.readString("ENTER NAME."),
+                                                                                    Keyboard.readDouble("ENTER PRICE"),
+                                                                                    Keyboard.readString("ENTER COLOR.")));
+                        break;
+                    case "3":
+                        /*decorRepository.addDecor(decorRepository.createDecor(Keyboard.inputStringMessage("ENTER NAME."),
+                                                                                Keyboard.inputDoubleMessage("ENTER PRICE"),
+                                                                                Keyboard.inputStringMessage("ENTER COLOR.")));*/ // Mirar los enum
+                        break;
+                    case "4":
+                        View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
+
+                        break;
+
+                    case "5":
+                        View.showRemoveMessageConfirmation(treeRepository.removeTree(Keyboard.readInt("ENTER ID")));
+                        break;
+
+                    case "6":
+                        View.showRemoveMessageConfirmation(flowerRepository.removeFlower(Keyboard.readInt("ENTER ID")));
+                        break;
+
+                    case "7":
+                        View.showRemoveMessageConfirmation(decorRepository.removeDecor(Keyboard.readInt("ENTER ID")));
+                        break;
+
+                    case "8":
+                        floristService.createStockFlorist(florist);
+                        View.showStockByProduct(florist.getProducts());
+                        break;
+
+                    case "9":
+                        View.showTotalValueFlorist(floristService.getTotalValue());
+                        break;
+
+                    case "10":
+                        String x;
+                        Ticket ticket = ticketRepository.createTicket();
+                        do {
+                            View.productAdded(ticketService.addProduct(ticket, Keyboard.readInt("ENTER ID")));
+                            x = Keyboard.readString("1-ADD PRODUCT" + "\n0-EXIT");
+                        }while (!x.equalsIgnoreCase("0"));
+                        ticketService.total(ticket);
+                        View.ticketAdded(ticketRepository.addTicket(ticket));
+                        break;
+
+                    case "11":
+
+                        View.showOldTickets(ticketRepository.getOldSales(LocalDate.of(Keyboard.readInt("Year YYYY"),
+                                                                                        Keyboard.readInt("MONTH 00"),
+                                                                                        Keyboard.readInt("DAY 00"))));
+
+                }
+
+                System.out.println("--------------------------------------------");
+
+            }
+        }while (!choice.equals("0"));
+
+        /*Tree tree = new Tree("Manzano", 25.45, 2.4);
         Tree tree2 = new Tree("Pino", 21.45, 2.1);
         Tree tree3 = new Tree("Olivo", 20, 2);
         Tree tree4 = new Tree("Roble", 25, 2);
@@ -67,7 +150,7 @@ public class App {
         Ticket ticket2 = new Ticket(LocalDate.of(2019,11,4));
         Ticket ticket3 = new Ticket(LocalDate.of(2018,11,4));
 
-        TicketService ticketService = new TicketService(ticketRepository);
+
 
         ticketService.addProduct(ticket, tree);
         ticketService.addProduct(ticket, tree2);
@@ -127,10 +210,22 @@ public class App {
 
         View.showTotalSales(ticketService.getTotalSales());
 
+        */
         database.writeDataToFiles();
         database.readDataFromFiles();
 
+        //treeRepository.updateTreePrice(3, 35);
 
+        // floristService.createStockFlorist(florist);
+        //view.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
+        //view.showStockByProduct(florist.getProducts());
+
+    }
+
+    static boolean isBetween0And11(String choice){
+        return (choice.equals("0")) || (choice.equals("1")) || (choice.equals("2")) || (choice.equals("3")) || (choice.equals("4")) ||
+                (choice.equals("5")) || (choice.equals("6")) || (choice.equals("7")) || (choice.equals("8")) || (choice.equals("9")) ||
+                (choice.equals("10")) || (choice.equals("11"));
     }
 
 }

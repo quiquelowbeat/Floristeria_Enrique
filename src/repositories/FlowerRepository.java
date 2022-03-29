@@ -22,7 +22,7 @@ public class FlowerRepository {
         database.getFlowers().add(flower);
     }
 
-    public void removeFlower(int id){
+    public boolean removeFlower(int id){
 
         boolean exist = false;
         int i = 0;
@@ -35,7 +35,25 @@ public class FlowerRepository {
             }
             i++;
         }
+        return exist;
+    }
 
+    public Product findOne (int id){
+        Product product = null;
+        boolean exist = false;
+        int i = 0;
+
+        while (!exist && i< database.getFlowers().size()) {
+
+            if (id == database.getFlowers().get(i).getId()) {
+
+                exist = true;
+                product = database.getFlowers().get(i);
+
+            }
+            i++;
+        }
+        return product;
     }
 
     public int getFlowerStockQuantity(){

@@ -27,8 +27,8 @@ public class TicketRepository {
         return new Ticket();
     }
 
-    public void addTicket(Ticket ticket){
-        database.getTickets().add(ticket);
+    public boolean addTicket(Ticket ticket){
+        return database.getTickets().add(ticket);
     }
 
     public Ticket findOne(int i){

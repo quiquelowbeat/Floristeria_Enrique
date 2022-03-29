@@ -14,7 +14,7 @@ public class DecorRepository {
         this.database = database;
     }
 
-    public Decor createDecor(String name, double price, Decor.Material material){
+    public Decor createDecor(String name, double price, String material){
         return new Decor(name, price, material);
     }
 
@@ -22,7 +22,7 @@ public class DecorRepository {
         database.getDecorations().add(decor);
     }
 
-    public void removeDecor(int id){
+    public boolean removeDecor(int id){
 
         boolean exist = false;
         int i = 0;
@@ -35,7 +35,25 @@ public class DecorRepository {
             }
             i++;
         }
+        return exist;
+    }
 
+    public Product findOne (int id){
+        Product product = null;
+        boolean exist = false;
+        int i = 0;
+
+        while (!exist && i< database.getDecorations().size()) {
+
+            if (id == database.getDecorations().get(i).getId()) {
+
+                exist = true;
+                product = database.getDecorations().get(i);
+
+            }
+            i++;
+        }
+        return product;
     }
 
     public int getDecorStockQuantity(){
