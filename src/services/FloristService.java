@@ -25,10 +25,6 @@ public class FloristService {
         this.ticketRepository = ticketRepository;
     }
 
-   /* public FloristService(TreeRepository treeRepository) {
-        this.treeRepository = treeRepository;
-    }*/
-
     public void createStockFlorist(Florist florist){
 
         florist.getProducts().put("Trees", treeRepository.getTreeStockQuantity());

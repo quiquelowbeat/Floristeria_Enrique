@@ -1,3 +1,4 @@
+import database.Database;
 import entities.*;
 import tools.Keyboard;
 import repositories.DecorRepository;
@@ -19,7 +20,7 @@ public class App {
 
         Florist florist = new Florist("Margarita", "C/ Peru 254", "698574526");
 
-        DataBase.Database database = new DataBase.Database();
+        Database database = new Database();
 
         TreeRepository treeRepository = new TreeRepository(database);
         FlowerRepository flowerRepository = new FlowerRepository(database);
@@ -33,11 +34,10 @@ public class App {
 
         String choice;
         do{
-            View.chooseOption();
+            View.options();
             choice = Keyboard.readString("");
-            if (!isBetween0And11(choice)){
-                //System.out.println("Select option between 0 y 7.");
-                View.chooseOption();
+            if (!isBetween0And12(choice)){
+                View.options();
                 choice = Keyboard.readString("");
             }else{
                 switch (choice){
@@ -46,7 +46,6 @@ public class App {
                         View.closedSoftware();
                         break;
                     case "1":
-
                         treeRepository.addTree(treeRepository.createTree(Keyboard.readString("ENTER NAME."),
                                                                             Keyboard.readDouble("ENTER PRICE"),
                                                                             Keyboard.readDouble("ENTER HEIGHT")));
@@ -63,7 +62,6 @@ public class App {
                         break;
                     case "4":
                         View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
-
                         break;
 
                     case "5":
@@ -99,11 +97,14 @@ public class App {
                         break;
 
                     case "11":
-
                         View.showOldTickets(ticketRepository.getOldSales(LocalDate.of(Keyboard.readInt("Year YYYY"),
                                                                                         Keyboard.readInt("MONTH 00"),
                                                                                         Keyboard.readInt("DAY 00"))));
+                        break;
 
+                    case "12":
+                        View.showTotalSales(ticketService.getTotalSales());
+                        break;
                 }
 
                 System.out.println("--------------------------------------------");
@@ -111,121 +112,15 @@ public class App {
             }
         }while (!choice.equals("0"));
 
-        /*Tree tree = new Tree("Manzano", 25.45, 2.4);
-        Tree tree2 = new Tree("Pino", 21.45, 2.1);
-        Tree tree3 = new Tree("Olivo", 20, 2);
-        Tree tree4 = new Tree("Roble", 25, 2);
-        Tree tree5 = new Tree("Peral", 20, 2);
-        Tree tree6 = new Tree("Castaño", 25, 2);
-
-        Flower flower = new Flower("Margarita", 3.5, "blanco");
-        Flower flower2 = new Flower("Rosal", 34.98, "rojo");
-        Flower flower3 = new Flower("Diente de león", 18.25, "naranja");
-        Flower flower4 = new Flower("Orquídea", 88.7, "blanco");
-        Flower flower5 = new Flower("Flor de loto", 94.98, "azul");
-        Flower flower6 = new Flower("Jazmín", 24.65, "blanco");
-
-        Decor decor = new Decor("Maceta rústica", 34, Decor.Material.WOOD);
-        Decor decor2 = new Decor("Maceta moderna", 21, Decor.Material.PLASTIC);
-        Decor decor3 = new Decor("Maceta tallada a mano", 44, Decor.Material.WOOD);
-
-        treeRepository.addTree(tree);
-        treeRepository.addTree(tree2);
-        treeRepository.addTree(tree3);
-        treeRepository.addTree(tree4);
-        treeRepository.addTree(tree5);
-        treeRepository.addTree(tree6);
-
-        flowerRepository.addFlower(flower);
-        flowerRepository.addFlower(flower2);
-        flowerRepository.addFlower(flower3);
-        flowerRepository.addFlower(flower4);
-        flowerRepository.addFlower(flower5);
-
-        decorRepository.addDecor(decor);
-        decorRepository.addDecor(decor2);
-        decorRepository.addDecor(decor3);
-
-        Ticket ticket = new Ticket();
-        Ticket ticket2 = new Ticket(LocalDate.of(2019,11,4));
-        Ticket ticket3 = new Ticket(LocalDate.of(2018,11,4));
-
-
-
-        ticketService.addProduct(ticket, tree);
-        ticketService.addProduct(ticket, tree2);
-        ticketService.addProduct(ticket, flower3);
-        ticketService.addProduct(ticket, decor3);
-        ticketService.total(ticket);
-        ticketRepository.addTicket(ticket);
-
-        View.showInfoTicket(ticket);
-
-        ticketService.addProduct(ticket2, tree3);
-        ticketService.addProduct(ticket2, tree4);
-        ticketService.addProduct(ticket2, flower);
-        ticketService.addProduct(ticket2, flower5);
-        ticketService.addProduct(ticket2, flower6);
-        ticketService.addProduct(ticket, decor);
-        ticketService.addProduct(ticket, decor2);
-        ticketService.addProduct(ticket, decor3);
-        ticketService.total(ticket2);
-
-        ticketRepository.addTicket(ticket2);
-
-        ticketService.addProduct(ticket3, tree5);
-        ticketService.addProduct(ticket3, tree6);
-        ticketService.addProduct(ticket3, flower3);
-        ticketService.addProduct(ticket, decor3);
-        ticketService.total(ticket3);
-
-        ticketRepository.addTicket(ticket3);
-
-        View.showOldTickets(ticketRepository.getOldSales(LocalDate.of(2020,1,1)));
-
-        floristService.createStockFlorist(florist);
-
-        View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
-
-        View.showStockByProduct(florist.getProducts());
-
-        View.showTotalValueFlorist(floristService.getTotalValue());
-
-        treeRepository.removeTree(2);
-        treeRepository.removeTree(9);
-        flowerRepository.removeFlower(7);
-        decorRepository.removeDecor(13);
-        View.showRemoveMessageConfirmation(treeRepository.removeTree(13));
-        floristService.createStockFlorist(florist);
-
-        View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
-
-        View.showTotalValueFlorist(floristService.getTotalValue());
-
-        // treeRepository.updateTreePrice(3, 35);
-
-        // floristService.createStockFlorist(florist);
-        View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
-        View.showStockByProduct(florist.getProducts());
-
-        View.showTotalSales(ticketService.getTotalSales());
-
-        */
-        database.writeDataToFiles();
-        database.readDataFromFiles();
-
-        //treeRepository.updateTreePrice(3, 35);
-
-        // floristService.createStockFlorist(florist);
-        //view.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
-        //view.showStockByProduct(florist.getProducts());
+        //database.writeDataToFiles();
+        //database.readDataFromFiles();
 
     }
 
-    static boolean isBetween0And11(String choice){
+    static boolean isBetween0And12(String choice){
         return (choice.equals("0")) || (choice.equals("1")) || (choice.equals("2")) || (choice.equals("3")) || (choice.equals("4")) ||
                 (choice.equals("5")) || (choice.equals("6")) || (choice.equals("7")) || (choice.equals("8")) || (choice.equals("9")) ||
-                (choice.equals("10")) || (choice.equals("11"));
+                (choice.equals("10")) || (choice.equals("11")) || (choice.equals("12"));
     }
 
 }
