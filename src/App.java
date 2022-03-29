@@ -1,27 +1,19 @@
 import database.Database;
-<<<<<<< HEAD
-import entities.Florist;
-import entities.Ticket;
-=======
 import entities.*;
 import tools.Keyboard;
->>>>>>> main
 import repositories.DecorRepository;
 import repositories.FlowerRepository;
 import repositories.TicketRepository;
 import repositories.TreeRepository;
 import services.FloristService;
 import services.TicketService;
-import tools.Keyboard;
 import vista.View;
-
-import java.io.IOException;
 import java.time.LocalDate;
 
 
 public class App {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
 
         Florist florist = new Florist("Margarita", "C/ Peru 254", "698574526");
@@ -118,13 +110,8 @@ public class App {
             }
         }while (!choice.equals("0"));
 
-<<<<<<< HEAD
-        database.writeDataToFiles();
-        database.readDataFromFiles();
-=======
-        //database.writeDataToFiles();
-        //database.readDataFromFiles();
->>>>>>> main
+        // database.writeDataToFiles();
+        // database.readDataFromFiles();
 
     }
 
