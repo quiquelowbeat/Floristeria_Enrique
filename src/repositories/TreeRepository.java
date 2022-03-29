@@ -19,9 +19,9 @@ public class TreeRepository implements Serializable{
         return new Tree(name, price, height);
     }
 
-    public void addTree (Tree tree ){
+    public boolean addTree (Tree tree ){
 
-        database.getTrees().add(tree);
+       return database.getTrees().add(tree);
 
     }
 

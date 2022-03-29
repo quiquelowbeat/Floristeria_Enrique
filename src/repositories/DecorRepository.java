@@ -14,12 +14,12 @@ public class DecorRepository {
         this.database = database;
     }
 
-    public Decor createDecor(String name, double price, String material){
-        return new Decor(name, price, material);
+    public Decor createDecor(String name, double price){
+        return new Decor(name, price);
     }
 
-    public void addDecor(Decor decor){
-        database.getDecorations().add(decor);
+    public boolean addDecor(Decor decor){
+        return database.getDecorations().add(decor);
     }
 
     public boolean removeDecor(int id){

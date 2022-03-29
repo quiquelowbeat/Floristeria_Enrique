@@ -30,60 +30,67 @@ public class App {
 
         //------------- Menu ------------------
 
-        String choice;
+        int choice;
         do{
             View.options();
-            choice = Keyboard.readString("");
+            choice = Keyboard.readInt("");
             if (!isBetween0And12(choice)){
                 View.options();
-                choice = Keyboard.readString("");
+                choice = Keyboard.readInt("");
             }else{
                 switch (choice){
 
-                    case "0":
+                    case 0:
                         View.closedSoftware();
                         break;
-                    case "1":
-                        treeRepository.addTree(treeRepository.createTree(Keyboard.readString("ENTER NAME."),
-                                                                            Keyboard.readDouble("ENTER PRICE"),
-                                                                            Keyboard.readDouble("ENTER HEIGHT")));
+                    case 1:
+                        View.treeAdded(treeRepository.addTree(treeRepository.createTree(Keyboard.readString("ENTER NAME."),
+                                                                                            Keyboard.readDouble("ENTER PRICE"),
+                                                                                            Keyboard.readDouble("ENTER HEIGHT"))));
                         break;
-                    case "2":
-                        flowerRepository.addFlower(flowerRepository.createFlower(Keyboard.readString("ENTER NAME."),
-                                                                                    Keyboard.readDouble("ENTER PRICE"),
-                                                                                    Keyboard.readString("ENTER COLOR.")));
+                    case 2:
+                        View.flowerAdded(flowerRepository.addFlower(flowerRepository.createFlower(Keyboard.readString("ENTER NAME."),
+                                                                                                    Keyboard.readDouble("ENTER PRICE"),
+                                                                                                    Keyboard.readString("ENTER COLOR."))));
                         break;
-                    case "3":
-                        /*decorRepository.addDecor(decorRepository.createDecor(Keyboard.inputStringMessage("ENTER NAME."),
-                                                                                Keyboard.inputDoubleMessage("ENTER PRICE"),
-                                                                                Keyboard.inputStringMessage("ENTER COLOR.")));*/ // Mirar los enum
+                    case 3:
+                        Decor decor = decorRepository.createDecor(Keyboard.readString("ENTER NAME."),Keyboard.readDouble("ENTER PRICE"));
+                        boolean select;
+                        do{
+                            select = decor.setTypeOfMaterial(Keyboard.readInt("""
+                                                                        MATERIAL:\s
+                                                                        1-WOOD
+                                                                        2-PLASTIC"""));
+                            if(!select){View.showMessage("SELECT 1 OR 2");}
+                        }while (!select);
+                        View.decorAdded(decorRepository.addDecor(decor));
                         break;
-                    case "4":
+                    case 4:
                         View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
                         break;
 
-                    case "5":
+                    case 5:
                         View.showRemoveMessageConfirmation(treeRepository.removeTree(Keyboard.readInt("ENTER ID")));
                         break;
 
-                    case "6":
+                    case 6:
                         View.showRemoveMessageConfirmation(flowerRepository.removeFlower(Keyboard.readInt("ENTER ID")));
                         break;
 
-                    case "7":
+                    case 7:
                         View.showRemoveMessageConfirmation(decorRepository.removeDecor(Keyboard.readInt("ENTER ID")));
                         break;
 
-                    case "8":
+                    case 8:
                         floristService.createStockFlorist(florist);
                         View.showStockByProduct(florist.getProducts());
                         break;
 
-                    case "9":
+                    case 9:
                         View.showTotalValueFlorist(floristService.getTotalValue());
                         break;
 
-                    case "10":
+                    case 10:
                         String x;
                         Ticket ticket = ticketRepository.createTicket();
                         do {
@@ -94,13 +101,13 @@ public class App {
                         View.ticketAdded(ticketRepository.addTicket(ticket));
                         break;
 
-                    case "11":
+                    case 11:
                         View.showOldTickets(ticketRepository.getOldSales(LocalDate.of(Keyboard.readInt("Year YYYY"),
                                                                                         Keyboard.readInt("MONTH 00"),
                                                                                         Keyboard.readInt("DAY 00"))));
                         break;
 
-                    case "12":
+                    case 12:
                         View.showTotalSales(ticketService.getTotalSales());
                         break;
                 }
@@ -108,17 +115,15 @@ public class App {
                 System.out.println("--------------------------------------------");
 
             }
-        }while (!choice.equals("0"));
+        }while (choice!=0);
 
         // database.writeDataToFiles();
         // database.readDataFromFiles();
 
     }
 
-    static boolean isBetween0And12(String choice){
-        return (choice.equals("0")) || (choice.equals("1")) || (choice.equals("2")) || (choice.equals("3")) || (choice.equals("4")) ||
-                (choice.equals("5")) || (choice.equals("6")) || (choice.equals("7")) || (choice.equals("8")) || (choice.equals("9")) ||
-                (choice.equals("10")) || (choice.equals("11")) || (choice.equals("12"));
+    static boolean isBetween0And12(int choice){
+        return (choice >= 0) && (choice <=12);
     }
 
 }
