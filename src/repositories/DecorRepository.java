@@ -1,6 +1,6 @@
 package repositories;
 
-import DataBase.Database;
+import database.Database;
 import entities.Decor;
 import entities.Product;
 

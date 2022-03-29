@@ -1,11 +1,10 @@
 package repositories;
 
-import DataBase.Database;
+import database.Database;
 import entities.Product;
 import entities.Tree;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TreeRepository implements Serializable{

@@ -1,4 +1,4 @@
-package DataBase;
+package database;
 
 import entities.*;
 import vista.View;
@@ -47,13 +47,13 @@ public class Database {
     public void writeDataToFiles() throws IOException {
         ObjectOutputStream writeFile = null;
         try {
-            writeFile = new ObjectOutputStream(new FileOutputStream("./Database/trees_db.txt"));
+            writeFile = new ObjectOutputStream(new FileOutputStream("./database/trees_db.txt"));
             writeFile.writeObject(this.trees);
-            writeFile = new ObjectOutputStream(new FileOutputStream("./Database/flowers_db.txt"));
+            writeFile = new ObjectOutputStream(new FileOutputStream("./database/flowers_db.txt"));
             writeFile.writeObject(this.flowers);
-            writeFile = new ObjectOutputStream(new FileOutputStream("./Database/decor_db.txt"));
+            writeFile = new ObjectOutputStream(new FileOutputStream("./database/decor_db.txt"));
             writeFile.writeObject(this.decorations);
-            writeFile = new ObjectOutputStream(new FileOutputStream("./Database/tickets_db.txt"));
+            writeFile = new ObjectOutputStream(new FileOutputStream("./database/tickets_db.txt"));
             writeFile.writeObject(this.tickets);
 
         } catch (IOException e) {
@@ -71,25 +71,25 @@ public class Database {
         ObjectInputStream readFile = null;
 
         try {
-            readFile = new ObjectInputStream(new FileInputStream("./Database/trees_db.txt"));
+            readFile = new ObjectInputStream(new FileInputStream("./database/trees_db.txt"));
             List<Product> newListTreesTest = (ArrayList<Product>) readFile.readObject(); // Hacemos cast porque readFile devuelve un Object.
             newListTreesTest.forEach(x -> {
                 Tree tree = (Tree) x;
                 System.out.println(tree.showInfo());
             });
-            readFile = new ObjectInputStream(new FileInputStream("./Database/flowers_db.txt"));
+            readFile = new ObjectInputStream(new FileInputStream("./database/flowers_db.txt"));
             List<Product> newListFlowersTest = (ArrayList<Product>) readFile.readObject();
             newListFlowersTest.forEach(x -> {
                 Flower flower = (Flower) x;
                 System.out.println(flower.showInfo());
             });
-            readFile = new ObjectInputStream(new FileInputStream("./Database/decor_db.txt"));
+            readFile = new ObjectInputStream(new FileInputStream("./database/decor_db.txt"));
             List<Product> newListDecorTest = (ArrayList<Product>) readFile.readObject();
             newListDecorTest.forEach(x -> {
                 Decor decor = (Decor) x;
                 System.out.println(decor.showInfo());
             });
-            readFile = new ObjectInputStream(new FileInputStream("./Database/tickets_db.txt"));
+            readFile = new ObjectInputStream(new FileInputStream("./database/tickets_db.txt"));
             List<Ticket> newListTicketTest = (ArrayList<Ticket>) readFile.readObject();
             newListTicketTest.forEach(x -> View.showInfoTicket(x));
 
