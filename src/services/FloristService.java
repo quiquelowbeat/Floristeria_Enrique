@@ -11,7 +11,7 @@ import java.util.List;
 
 public class FloristService {
 
-    private static TreeRepository treeRepository;
+    private TreeRepository treeRepository;
     private FlowerRepository flowerRepository;
     private DecorRepository decorRepository;
     private TicketRepository ticketRepository;
@@ -19,7 +19,7 @@ public class FloristService {
 
 
     public FloristService(TreeRepository treeRepository, FlowerRepository flowerRepository, DecorRepository decorRepository, TicketRepository ticketRepository) {
-        FloristService.treeRepository = treeRepository;
+        this.treeRepository = treeRepository;
         this.flowerRepository = flowerRepository;
         this.decorRepository = decorRepository;
         this.ticketRepository = ticketRepository;

@@ -5,6 +5,8 @@ import entities.Ticket;
 import entities.Tree;
 import repositories.TicketRepository;
 
+import java.util.List;
+
 
 public class TicketService {
 
@@ -30,6 +32,15 @@ public class TicketService {
         }
 
         ticket.setTotal(totalPriceTicket);
+    }
+
+    public double getTotalSales(){
+        double totalSales = 0;
+        for(Double totalPrice : ticketRepository.getTotalPricesFromDatabase()){
+            totalSales += totalPrice;
+        }
+        return totalSales;
+
     }
 
 

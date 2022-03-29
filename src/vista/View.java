@@ -8,7 +8,7 @@ import java.util.List;
 
 public class View {
 
-    public void showStock(List<Product> trees, List<Product> flowers, List<Product> decorations) {
+    public static void showStock(List<Product> trees, List<Product> flowers, List<Product> decorations) {
         System.out.println("TREES:");
         trees.forEach(x -> {
             Tree tree = (Tree) x;
@@ -35,36 +35,36 @@ public class View {
         });
     }
 
-    public void showTotalValueFlorist(double totalValue){
+    public static void showTotalValueFlorist(double totalValue){
 
         System.out.println(totalValue);
 
     }
 
-    public void showStockByProduct(HashMap<String, Integer> stockProducts){
+    public static void showStockByProduct(HashMap<String, Integer> stockProducts){
         System.out.println("TOTAL STOCK:");
         System.out.println("TREES STOCK: " + stockProducts.get("Trees"));
         System.out.println("FLOWERS STOCK: " + stockProducts.get("Flowers"));
         System.out.println("DECOR STOCK: " + stockProducts.get("Decorations"));
     }
 
-    public void showInfoTicket(Ticket ticket){
+    public static void showInfoTicket(Ticket ticket){
 
         System.out.println("Ticket number: " + ticket.getNumTicket() +
                 "\nDate: " + ticket.getDate());
 
         for (Product product: ticket.getProducts()) {
 
-            if (product instanceof Tree tree) {
-
+            if (product instanceof Tree) {
+                Tree tree = (Tree) product;
                 System.out.println(tree.showInfo());
 
-            } else if (product instanceof Flower flower) {
-
+            } else if (product instanceof Flower) {
+                Flower flower = (Flower) product;
                 System.out.println(flower.showInfo());
 
-            } else if (product instanceof Decor decor) {
-
+            } else if (product instanceof Decor) {
+                Decor decor = (Decor) product;
                 System.out.println(decor.showInfo());
             }
         }
@@ -72,9 +72,9 @@ public class View {
         System.out.println("TICKET TOTAL: " + ((double)Math.round(ticket.getTotal() * 100d) / 100d) + "€");
     }
 
-    public void showOldTickets(List<Ticket> oldTickets){
+    public static void showOldTickets(List<Ticket> oldTickets){
 
-        oldTickets.forEach(this::showInfoTicket);
+        oldTickets.forEach(x -> showInfoTicket(x));
 
     }
 
@@ -84,6 +84,12 @@ public class View {
         } else {
             System.out.println("Producto no encontrado.");
         }
+    }
+
+    public static void showTotalSales(double totalSales){
+
+        System.out.println("TOTAL SALES: " + ((double)Math.round(totalSales * 100d) / 100d) + "€");
+
     }
 
 }

@@ -15,6 +15,6 @@ public class Flower extends Product {
 
     @Override
     public String showInfo() {
-        return "ID: " + super.id + "\nNombre árbol: " + super.name + "\nColor: " + this.color + "\nPrecio: " + super.price + "€";
+        return "ID: " + super.id + "\nNombre flor: " + super.name + "\nColor: " + this.color + "\nPrecio: " + super.price + "€";
     }
 }

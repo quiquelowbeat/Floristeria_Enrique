@@ -7,16 +7,17 @@ import services.FloristService;
 import services.TicketService;
 import vista.View;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Florist florist = new Florist("Margarita", "C/ Peru 254", "698574526");
 
-        View view = new View();
+        // View view = new View();
 
         DataBase.Database database = new DataBase.Database();
 
@@ -75,7 +76,7 @@ public class App {
         ticketService.total(ticket);
         ticketRepository.addTicket(ticket);
 
-        view.showInfoTicket(ticket);
+        View.showInfoTicket(ticket);
 
         ticketService.addProduct(ticket2, tree3);
         ticketService.addProduct(ticket2, tree4);
@@ -97,15 +98,15 @@ public class App {
 
         ticketRepository.addTicket(ticket3);
 
-        view.showOldTickets(ticketRepository.getOldSales(LocalDate.of(2020,1,1)));
+        View.showOldTickets(ticketRepository.getOldSales(LocalDate.of(2020,1,1)));
 
         floristService.createStockFlorist(florist);
 
-        view.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
+        View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
 
-        view.showStockByProduct(florist.getProducts());
+        View.showStockByProduct(florist.getProducts());
 
-        view.showTotalValueFlorist(floristService.getTotalValue());
+        View.showTotalValueFlorist(floristService.getTotalValue());
 
         treeRepository.removeTree(2);
         treeRepository.removeTree(9);
@@ -114,15 +115,21 @@ public class App {
         View.showRemoveMessageConfirmation(treeRepository.removeTree(13));
         floristService.createStockFlorist(florist);
 
-        view.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
+        View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
 
-        view.showTotalValueFlorist(floristService.getTotalValue());
+        View.showTotalValueFlorist(floristService.getTotalValue());
 
-        treeRepository.updateTreePrice(3, 35);
+        // treeRepository.updateTreePrice(3, 35);
 
         // floristService.createStockFlorist(florist);
-        view.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
-        view.showStockByProduct(florist.getProducts());
+        View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
+        View.showStockByProduct(florist.getProducts());
+
+        View.showTotalSales(ticketService.getTotalSales());
+
+        database.writeDataToFiles();
+        database.readDataFromFiles();
+
 
     }
 

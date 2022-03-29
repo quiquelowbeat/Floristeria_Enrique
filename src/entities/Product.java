@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Product {
+public abstract class Product implements Serializable {
 
     static int nextId = 1;
 
@@ -41,7 +42,7 @@ public abstract class Product {
         this.price = price;
     }
 
-    abstract String showInfo();
+    public abstract String showInfo();
 
     @Override
     public boolean equals(Object o) {

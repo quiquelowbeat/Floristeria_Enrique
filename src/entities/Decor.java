@@ -20,6 +20,6 @@ public class Decor extends Product {
 
     @Override
     public String showInfo() {
-        return "ID: " + super.id + "\nNombre árbol: " + super.name + "\nMaterial: " + this.typeOfMaterial + "\nPrecio: " + super.price + "€";
+        return "ID: " + super.id + "\nNombre decoración: " + super.name + "\nMaterial: " + this.typeOfMaterial + "\nPrecio: " + super.price + "€";
     }
 }

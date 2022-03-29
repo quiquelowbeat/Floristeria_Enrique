@@ -3,11 +3,12 @@ package repositories;
 import DataBase.Database;
 import entities.Product;
 import entities.Tree;
-import vista.View;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class TreeRepository {
+public class TreeRepository implements Serializable{
 
     private Database database;
 

@@ -3,6 +3,10 @@ package repositories;
 import DataBase.Database;
 import entities.Ticket;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,4 +74,17 @@ public class TicketRepository {
 
         return oldTickets;
     }
+
+    public List<Double> getTotalPricesFromDatabase(){
+
+        List<Double> totalSalesList = new ArrayList<>();
+
+        for(int i = 0; i<database.getTickets().size(); i++){
+            totalSalesList.add(database.getTickets().get(i).getTotal());
+
+        }
+        return totalSalesList;
+
+    }
+
 }
