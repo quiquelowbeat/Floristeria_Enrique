@@ -12,26 +12,26 @@ public class View {
         System.out.println("TREES:");
         trees.forEach(x -> {
             Tree tree = (Tree) x;
-            System.out.println("Id: " + tree.getId() +
-                    " Name: " + tree.getName() +
-                    " Height: " + tree.getHeight() +
-                    " Price: " + tree.getPrice() + "€");
+            System.out.println("ID: " + tree.getId() +
+                    " NAME: " + tree.getName() +
+                    " HEIGHT: " + tree.getHeight() +
+                    " PRICE: " + tree.getPrice() + "€");
         });
         System.out.println("FLOWERS:");
         flowers.forEach(x -> {
             Flower flower = (Flower) x;
-            System.out.println("Id: " + flower.getId() +
-                    " Name: " + flower.getName() +
-                    " Color: " + flower.getcolor() +
-                    " Price: " + flower.getPrice() + "€");
+            System.out.println("ID: " + flower.getId() +
+                    " NAME: " + flower.getName() +
+                    " COLOR: " + flower.getcolor() +
+                    " PRICE: " + flower.getPrice() + "€");
         });
         System.out.println("DECORATIONS:");
         decorations.forEach(x -> {
             Decor decor = (Decor) x;
-            System.out.println("Id: " + decor.getId() +
-                    " Name: " + decor.getName() +
-                    " Material: " + decor.getMaterial() +
-                    " Price: " + decor.getPrice() + "€");
+            System.out.println("ID: " + decor.getId() +
+                    " NAME: " + decor.getName() +
+                    " MATERIAL: " + decor.getMaterial() +
+                    " PRICE: " + decor.getPrice() + "€");
         });
     }
 
@@ -50,8 +50,8 @@ public class View {
 
     public static void showInfoTicket(Ticket ticket) {
 
-        System.out.println("Ticket number: " + ticket.getNumTicket() +
-                "\nDate: " + ticket.getDate());
+        System.out.println("TICKET NUMBER: " + ticket.getNumTicket() +
+                            "\nDATE: " + ticket.getDate());
 
         for (Product product : ticket.getProducts()) {
 
@@ -83,9 +83,9 @@ public class View {
 
     public static void showRemoveMessageConfirmation(boolean exist) { // Revisar
         if (exist) {
-            System.out.println("Producto borrado con éxito.");
+            System.out.println("PRODUCT SUCCESSFULLY REMOVE.");
         } else {
-            System.out.println("Producto no encontrado.");
+            System.out.println("PRODUCT NOT FOUND.");
         }
     }
 
@@ -113,19 +113,43 @@ public class View {
                 0-EXIT.""");
     }
 
+    public static void treeAdded ( boolean result){
+        if (result) {
+            System.out.println("TREE SUCCESSFULLY ADDED.");
+        } else {
+            System.out.println("TREE NOT ADDED.");
+        }
+    }
+
+    public static void flowerAdded ( boolean result){
+        if (result) {
+            System.out.println("FLOWER SUCCESSFULLY ADDED.");
+        } else {
+            System.out.println("FLOWER NOT ADDED.");
+        }
+    }
+
+    public static void decorAdded ( boolean result){
+        if (result) {
+            System.out.println("DECORATION SUCCESSFULLY ADDED.");
+        } else {
+            System.out.println("DECORATION NOT ADDED.");
+        }
+    }
+
     public static void productAdded ( boolean result){
         if (result) {
-            System.out.println("Producto añadido con éxito.");
+            System.out.println("PRODUCT SUCCESSFULLY ADDED.");
         } else {
-            System.out.println("Producto no encontrado.");
+            System.out.println("PRODUCT NOT FOUND.");
         }
     }
 
     public static void ticketAdded ( boolean result){
         if (result) {
-            System.out.println("Ticket añadido con éxito.");
+            System.out.println("TICKET SUCCESSFULLY ADDED.");
         } else {
-            System.out.println("Ticket no añadido.");
+            System.out.println("TICKET NOT FOUND.");
         }
     }
 
@@ -134,19 +158,19 @@ public class View {
     }
 
     public static void closedSoftware () {
-        System.out.println("Successfully closed software");
+        System.out.println("SOFTWARE SUCCESSFULLY CLOSED");
     }
 
     public static void formatError () {
-        System.out.println("Error de formato");
+        System.out.println("FORMAT ERROR");
     }
 
     public static void invalidInformation () {
-        System.out.println("Introducción no válida");
+        System.out.println("INPUT NOT VALID");
     }
 
     public static void introductionErrorString () {
-        System.out.println("Error en la introducción de la string.");
+        System.out.println("ERROR INPUT STRING.");
 
     }
 

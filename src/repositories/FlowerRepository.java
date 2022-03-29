@@ -18,8 +18,8 @@ public class FlowerRepository {
         return new Flower(name, price, color);
     }
 
-    public void addFlower(Flower flower){
-        database.getFlowers().add(flower);
+    public boolean addFlower(Flower flower){
+        return database.getFlowers().add(flower);
     }
 
     public boolean removeFlower(int id){
