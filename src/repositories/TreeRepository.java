@@ -43,6 +43,24 @@ public class TreeRepository {
        return exist;
     }
 
+    public Product findOne (int id){
+        Product product = null;
+        boolean exist = false;
+        int i = 0;
+
+        while (!exist && i< database.getTrees().size()) {
+
+            if (id == database.getTrees().get(i).getId()) {
+
+                exist = true;
+                product = database.getTrees().get(i);
+
+            }
+            i++;
+        }
+        return product;
+    }
+
     public int getTreeStockQuantity(){
         return database.getTrees().size();
     }
