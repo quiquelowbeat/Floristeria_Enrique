@@ -37,7 +37,7 @@ public class View {
 
     public static void showTotalValueFlorist(double totalValue) {
 
-        System.out.println(totalValue);
+        System.out.println("TOTAL VALUE:" + totalValue + "€");
 
     }
 
@@ -89,27 +89,28 @@ public class View {
         }
     }
 
-
     public static void showTotalSales(double totalSales) {
 
         System.out.println("TOTAL SALES: " + ((double) Math.round(totalSales * 100d) / 100d) + "€");
 
     }
 
-    public static void chooseOption () {
-        System.out.println("SELECT OPTION 0 - 8:");
-        System.out.println("1-ADD TREE." +
-                "\n2-ADD FLOWER." +
-                "\n3-ADD DECOR." +
-                "\n4-SHOW STOCK." +
-                "\n5-REMOVE TREE." +
-                "\n6-REMOVE FLOWER." +
-                "\n7-REMOVE DECOR." +
-                "\n8-SHOW STOCK QUANTITY" +
-                "\n9-TOTAL VALUE" +
-                "\n10-CREATE TICKET" +
-                "\n11-SHOW OLD TICKETS" +
-                "\n0-EXIT.");
+    public static void options() {
+        System.out.println("SELECT OPTION 0 - 12:");
+        System.out.println("""
+                1-ADD TREE.
+                2-ADD FLOWER.
+                3-ADD DECOR.
+                4-SHOW STOCK.
+                5-REMOVE TREE.
+                6-REMOVE FLOWER.
+                7-REMOVE DECOR.
+                8-SHOW STOCK QUANTITY
+                9-TOTAL VALUE
+                10-CREATE TICKET
+                11-SHOW OLD TICKETS
+                12-SHOW TOTAL MONEY
+                0-EXIT.""");
     }
 
     public static void productAdded ( boolean result){

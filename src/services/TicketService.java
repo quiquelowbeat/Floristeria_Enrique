@@ -2,14 +2,10 @@ package services;
 
 import entities.Product;
 import entities.Ticket;
-import entities.Tree;
 import repositories.DecorRepository;
 import repositories.FlowerRepository;
 import repositories.TicketRepository;
 import repositories.TreeRepository;
-
-import java.util.List;
-
 
 public class TicketService {
 
@@ -68,8 +64,4 @@ public class TicketService {
         return totalSales;
 
     }
-
-
-
-
 }

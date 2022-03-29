@@ -1,6 +1,11 @@
 import database.Database;
+<<<<<<< HEAD
 import entities.Florist;
 import entities.Ticket;
+=======
+import entities.*;
+import tools.Keyboard;
+>>>>>>> main
 import repositories.DecorRepository;
 import repositories.FlowerRepository;
 import repositories.TicketRepository;
@@ -35,11 +40,10 @@ public class App {
 
         String choice;
         do{
-            View.chooseOption();
+            View.options();
             choice = Keyboard.readString("");
-            if (!isBetween0And11(choice)){
-                //System.out.println("Select option between 0 y 7.");
-                View.chooseOption();
+            if (!isBetween0And12(choice)){
+                View.options();
                 choice = Keyboard.readString("");
             }else{
                 switch (choice){
@@ -48,7 +52,6 @@ public class App {
                         View.closedSoftware();
                         break;
                     case "1":
-
                         treeRepository.addTree(treeRepository.createTree(Keyboard.readString("ENTER NAME."),
                                                                             Keyboard.readDouble("ENTER PRICE"),
                                                                             Keyboard.readDouble("ENTER HEIGHT")));
@@ -65,7 +68,6 @@ public class App {
                         break;
                     case "4":
                         View.showStock(floristService.getTrees(), floristService.getFlowers(), floristService.getDecorations());
-
                         break;
 
                     case "5":
@@ -101,11 +103,14 @@ public class App {
                         break;
 
                     case "11":
-
                         View.showOldTickets(ticketRepository.getOldSales(LocalDate.of(Keyboard.readInt("Year YYYY"),
                                                                                         Keyboard.readInt("MONTH 00"),
                                                                                         Keyboard.readInt("DAY 00"))));
+                        break;
 
+                    case "12":
+                        View.showTotalSales(ticketService.getTotalSales());
+                        break;
                 }
 
                 System.out.println("--------------------------------------------");
@@ -113,15 +118,20 @@ public class App {
             }
         }while (!choice.equals("0"));
 
+<<<<<<< HEAD
         database.writeDataToFiles();
         database.readDataFromFiles();
+=======
+        //database.writeDataToFiles();
+        //database.readDataFromFiles();
+>>>>>>> main
 
     }
 
-    static boolean isBetween0And11(String choice){
+    static boolean isBetween0And12(String choice){
         return (choice.equals("0")) || (choice.equals("1")) || (choice.equals("2")) || (choice.equals("3")) || (choice.equals("4")) ||
                 (choice.equals("5")) || (choice.equals("6")) || (choice.equals("7")) || (choice.equals("8")) || (choice.equals("9")) ||
-                (choice.equals("10")) || (choice.equals("11"));
+                (choice.equals("10")) || (choice.equals("11")) || (choice.equals("12"));
     }
 
 }
