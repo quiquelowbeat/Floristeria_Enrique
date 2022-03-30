@@ -2,7 +2,6 @@ package entities;
 
 public class Decor extends Product {
 
-    enum Material {WOOD, PLASTIC}
     private String typeOfMaterial;
 
     public Decor(String name, double price){
@@ -28,6 +27,6 @@ public class Decor extends Product {
 
     @Override
     public String showInfo() {
-        return "ID: " + super.id + "\nNombre decoración: " + super.name + "\nMaterial: " + this.typeOfMaterial + "\nPrecio: " + super.price + "€";
+        return "ID: " + super.getId() + "\nNombre decoración: " + super.getName() + "\nMaterial: " + this.typeOfMaterial + "\nPrecio: " + super.getPrice() + "€";
     }
 }
