@@ -19,6 +19,8 @@ public class App {
         Florist florist = new Florist("Margarita", "C/ Peru 254", "698574526");
 
         Database database = new Database();
+        database.writeDataToFiles();
+        database.readDataFromFiles();
 
         TreeRepository treeRepository = new TreeRepository(database);
         FlowerRepository flowerRepository = new FlowerRepository(database);
@@ -41,20 +43,21 @@ public class App {
                 switch (choice){
 
                     case 0:
+                        database.writeDataToFiles();
                         View.closedSoftware();
                         break;
                     case 1:
-                        View.treeAdded(treeRepository.addTree(treeRepository.createTree(Keyboard.readString("ENTER NAME."),
+                        View.treeAdded(treeRepository.addTree(treeRepository.createTree(Keyboard.readString("ENTER NAME"),
                                                                                             Keyboard.readDouble("ENTER PRICE"),
                                                                                             Keyboard.readDouble("ENTER HEIGHT"))));
                         break;
                     case 2:
-                        View.flowerAdded(flowerRepository.addFlower(flowerRepository.createFlower(Keyboard.readString("ENTER NAME."),
+                        View.flowerAdded(flowerRepository.addFlower(flowerRepository.createFlower(Keyboard.readString("ENTER NAME"),
                                                                                                     Keyboard.readDouble("ENTER PRICE"),
-                                                                                                    Keyboard.readString("ENTER COLOR."))));
+                                                                                                    Keyboard.readString("ENTER COLOR"))));
                         break;
                     case 3:
-                        Decor decor = decorRepository.createDecor(Keyboard.readString("ENTER NAME."),Keyboard.readDouble("ENTER PRICE"));
+                        Decor decor = decorRepository.createDecor(Keyboard.readString("ENTER NAME"),Keyboard.readDouble("ENTER PRICE"));
                         boolean select;
                         do{
                             select = decor.setTypeOfMaterial(Keyboard.readInt("""
@@ -103,8 +106,8 @@ public class App {
 
                     case 11:
                         View.showOldTickets(ticketRepository.getOldSales(LocalDate.of(Keyboard.readInt("Year YYYY"),
-                                                                                        Keyboard.readInt("MONTH 00"),
-                                                                                        Keyboard.readInt("DAY 00"))));
+                                                                                        Keyboard.readInt("MONTH MM"),
+                                                                                        Keyboard.readInt("DAY DD"))));
                         break;
 
                     case 12:

@@ -37,7 +37,7 @@ public class View {
 
     public static void showTotalValueFlorist(double totalValue) {
 
-        System.out.println("TOTAL VALUE:" + totalValue + "€");
+        System.out.println("TOTAL VALUE: " + totalValue + "€");
 
     }
 
@@ -83,7 +83,7 @@ public class View {
 
     public static void showRemoveMessageConfirmation(boolean exist) { // Revisar
         if (exist) {
-            System.out.println("PRODUCT SUCCESSFULLY REMOVE.");
+            System.out.println("PRODUCT SUCCESSFULLY REMOVED.");
         } else {
             System.out.println("PRODUCT NOT FOUND.");
         }
@@ -172,6 +172,10 @@ public class View {
     public static void introductionErrorString () {
         System.out.println("ERROR INPUT STRING.");
 
+    }
+
+    public static void fileNotFound(){
+        System.out.println("FILE NOT FOUND.");
     }
 
 }

@@ -24,24 +24,16 @@ public class Database {
 
     }
 
-    public List<Product> getTrees() {
-        return trees;
-    }
+    public List<Product> getTrees() { return trees; }
     public List<Product> getFlowers(){ return flowers; }
     public List<Product> getDecorations(){ return decorations; }
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
+    public List<Ticket> getTickets() { return tickets;}
 
 
-    public void setTrees(List<Product> trees) {
-        this.trees = trees;
-    }
+    public void setTrees(List<Product> trees) { this.trees = trees; }
     public void setFlowers(List<Product> flowers) { this.flowers = flowers; }
     public void setDecorations(List<Product> decorations) { this.decorations = decorations; }
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
+    public void setTickets(List<Ticket> tickets) { this.tickets = tickets; }
 
     // Métodos de escritura y lectura de archivos.
 
@@ -58,38 +50,43 @@ public class Database {
             writeFile.writeObject(this.tickets);
             writeFile.close();
         } catch (IOException e) {
-            System.out.println("FILE NOT FOUND.");
+            View.fileNotFound();
             e.printStackTrace();
         }
+
     }
 
     public void readDataFromFiles() {
         ObjectInputStream readFile = null;
         try {
             readFile = new ObjectInputStream(new FileInputStream(String.valueOf(Path.of("database/trees_db.txt"))));
-            List<Product> newListTreesTest = (ArrayList<Product>) readFile.readObject(); // Hacemos cast porque readFile devuelve un Object.
-            newListTreesTest.forEach(x -> {
+            trees = ((ArrayList<Product>) readFile.readObject());
+            // List<Product> newListTreesTest = (ArrayList<Product>) readFile.readObject(); // Hacemos cast porque readFile devuelve un Object.
+            /*newListTreesTest.forEach(x -> {
                 Tree tree = (Tree) x;
                 System.out.println(tree.showInfo());
-            });
+            });*/
             readFile = new ObjectInputStream(new FileInputStream(String.valueOf(Path.of("database/flowers_db.txt"))));
-            List<Product> newListFlowersTest = (ArrayList<Product>) readFile.readObject();
-            newListFlowersTest.forEach(x -> {
+            flowers = (ArrayList<Product>) readFile.readObject();
+            // List<Product> newListFlowersTest = (ArrayList<Product>) readFile.readObject();
+            /*newListFlowersTest.forEach(x -> {
                 Flower flower = (Flower) x;
                 System.out.println(flower.showInfo());
-            });
+            });*/
             readFile = new ObjectInputStream(new FileInputStream(String.valueOf(Path.of("database/decor_db.txt"))));
-            List<Product> newListDecorTest = (ArrayList<Product>) readFile.readObject();
-            newListDecorTest.forEach(x -> {
+            decorations = (ArrayList<Product>) readFile.readObject();
+            // List<Product> newListDecorTest = (ArrayList<Product>) readFile.readObject();
+            /*newListDecorTest.forEach(x -> {
                 Decor decor = (Decor) x;
                 System.out.println(decor.showInfo());
-            });
+            });*/
             readFile = new ObjectInputStream(new FileInputStream(String.valueOf(Path.of("database/tickets_db.txt"))));
-            List<Ticket> newListTicketTest = (ArrayList<Ticket>) readFile.readObject();
-            newListTicketTest.forEach(x -> View.showInfoTicket(x));
+            tickets = (ArrayList<Ticket>) readFile.readObject();
+            // List<Ticket> newListTicketTest = (ArrayList<Ticket>) readFile.readObject();
+            /*newListTicketTest.forEach(x -> View.showInfoTicket(x));*/
             readFile.close();
         } catch (ClassNotFoundException | IOException e) {
-            System.out.println("FILE NOT FOUND.");
+            View.fileNotFound();
             e.printStackTrace();
         }
 
