@@ -8,6 +8,8 @@ import repositories.TreeRepository;
 import services.FloristService;
 import services.TicketService;
 import vista.View;
+
+import java.io.IOException;
 import java.time.LocalDate;
 
 
@@ -19,8 +21,7 @@ public class App {
         Florist florist = new Florist("Margarita", "C/ Peru 254", "698574526");
 
         Database database = new Database();
-        database.writeDataToFiles();
-        database.readDataFromFiles();
+        Database.configDatabase(database);
 
         TreeRepository treeRepository = new TreeRepository(database);
         FlowerRepository flowerRepository = new FlowerRepository(database);
@@ -119,9 +120,6 @@ public class App {
 
             }
         }while (choice!=0);
-
-        // database.writeDataToFiles();
-        // database.readDataFromFiles();
 
     }
 
