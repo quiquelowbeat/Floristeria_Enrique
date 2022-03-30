@@ -110,7 +110,7 @@ public class Keyboard {
                 numero = sc.nextByte();
                 correcto = true;
             } catch (InputMismatchException ex) {
-                View.formatError();
+                View.showMessage("FORMAT ERROR");
             }
             sc.nextLine();
         } while (!correcto);
@@ -132,7 +132,7 @@ public class Keyboard {
                 caracter = sc.next().charAt(0);// Cogemos el primer carácter en una lectura de cadena
                 correcto = true;
             } catch (InputMismatchException ex) {
-                View.formatError();
+                View.showMessage("FORMAT ERROR");
             } catch (Exception ex) {
                 View.showMessage(ex.toString());
             }
@@ -161,11 +161,11 @@ public class Keyboard {
                 } else if (cadena.charAt(0) == 'N') {
                     retorno = false;
                 } else {
-                    View.invalidInformation();
+                    View.showMessage("INPUT NOT VALID");
                     correcto = false;
                 }
             } catch (Exception ex) {
-                View.introductionErrorString();
+                View.showMessage("ERROR INPUT STRING.");
             }
         } while (!correcto);
         return retorno;

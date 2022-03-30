@@ -157,23 +157,6 @@ public class View {
         System.out.println(message);
     }
 
-    public static void closedSoftware () {
-        System.out.println("SOFTWARE SUCCESSFULLY CLOSED");
-    }
-
-    public static void formatError () {
-        System.out.println("FORMAT ERROR");
-    }
-
-    public static void invalidInformation () {
-        System.out.println("INPUT NOT VALID");
-    }
-
-    public static void introductionErrorString () {
-        System.out.println("ERROR INPUT STRING.");
-
-    }
-
 }
 
 

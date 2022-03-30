@@ -22,14 +22,14 @@ public class DecorRepository {
         return database.getDecorations().add(decor);
     }
 
-    public boolean removeDecor(int id){
+    public boolean removeDecor(String name){
 
         boolean exist = false;
         int i = 0;
 
         while(!exist && i<database.getDecorations().size()){
 
-            if(id == database.getDecorations().get(i).getId()){
+            if(name.equalsIgnoreCase(database.getDecorations().get(i).getName())){
                 exist = true;
                 database.getDecorations().remove(i);
             }
@@ -38,14 +38,14 @@ public class DecorRepository {
         return exist;
     }
 
-    public Product findOne (int id){
+    public Product findOne (String name){
         Product product = null;
         boolean exist = false;
         int i = 0;
 
         while (!exist && i< database.getDecorations().size()) {
 
-            if (id == database.getDecorations().get(i).getId()) {
+            if (name.equalsIgnoreCase(database.getDecorations().get(i).getName())) {
 
                 exist = true;
                 product = database.getDecorations().get(i);
