@@ -98,9 +98,9 @@ public class Database {
 
         } catch (IOException e){
             e.printStackTrace();
-        } finally {
-            database.readDataFromFiles();
         }
+
+        database.readDataFromFiles();
 
     }
 
@@ -108,10 +108,10 @@ public class Database {
 
         String osName = System.getProperty("os.name").toLowerCase();
 
-        if(osName.contains("mac")){
+        if(osName.contains("mac") || osName.contains("nix") || osName.contains("nux") || osName.contains("aix")){
             currentDirectory = new File(System.getProperty("user.dir") + File.separator + "database");
         } else {
-            currentDirectory = new File(System.getProperty("user.dir") + File.separator + "database" + File.separator + "src");
+            currentDirectory = new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "database");
         }
 
         return currentDirectory;

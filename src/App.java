@@ -8,8 +8,6 @@ import repositories.TreeRepository;
 import services.FloristService;
 import services.TicketService;
 import vista.View;
-
-import java.io.IOException;
 import java.time.LocalDate;
 
 
@@ -44,7 +42,13 @@ public class App {
                 switch (choice){
 
                     case 0:
-                        database.writeDataToFiles();
+                        boolean select;
+                        select = Keyboard.leerSiNo("""
+                            SAVE CHANGES IN DATABASE?
+                            (Y/N)""");
+                        if(select){
+                            database.writeDataToFiles();
+                        }
                         View.closedSoftware();
                         break;
                     case 1:
@@ -59,7 +63,6 @@ public class App {
                         break;
                     case 3:
                         Decor decor = decorRepository.createDecor(Keyboard.readString("ENTER NAME"),Keyboard.readDouble("ENTER PRICE"));
-                        boolean select;
                         do{
                             select = decor.setTypeOfMaterial(Keyboard.readInt("""
                                                                         MATERIAL:\s
