@@ -12,26 +12,17 @@ public class View {
         System.out.println("TREES:");
         trees.forEach(x -> {
             Tree tree = (Tree) x;
-            System.out.println("ID: " + tree.getId() +
-                    " NAME: " + tree.getName() +
-                    " HEIGHT: " + tree.getHeight() +
-                    " PRICE: " + tree.getPrice() + "€");
+            System.out.println(tree.showInfo());
         });
         System.out.println("FLOWERS:");
         flowers.forEach(x -> {
             Flower flower = (Flower) x;
-            System.out.println("ID: " + flower.getId() +
-                    " NAME: " + flower.getName() +
-                    " COLOR: " + flower.getcolor() +
-                    " PRICE: " + flower.getPrice() + "€");
+            System.out.println(flower.showInfo());
         });
         System.out.println("DECORATIONS:");
         decorations.forEach(x -> {
             Decor decor = (Decor) x;
-            System.out.println("ID: " + decor.getId() +
-                    " NAME: " + decor.getName() +
-                    " MATERIAL: " + decor.getMaterial() +
-                    " PRICE: " + decor.getPrice() + "€");
+            System.out.println(decor.showInfo());
         });
     }
 

@@ -25,14 +25,14 @@ public class TreeRepository implements Serializable{
 
     }
 
-    public boolean removeTree (int id){
+    public boolean removeTree(String name){
 
         boolean exist = false;
         int i = 0;
 
         while (!exist && i< database.getTrees().size()) {
 
-            if (id == database.getTrees().get(i).getId()) {
+            if (name.equalsIgnoreCase(database.getTrees().get(i).getName())) {
 
                 exist = true;
                 database.getTrees().remove(i);
@@ -40,17 +40,17 @@ public class TreeRepository implements Serializable{
             }
             i++;
         }
-       return exist;
+        return exist;
     }
 
-    public Product findOne (int id){
+    public Product findOne (String name){
         Product product = null;
         boolean exist = false;
         int i = 0;
 
         while (!exist && i< database.getTrees().size()) {
 
-            if (id == database.getTrees().get(i).getId()) {
+            if (name.equalsIgnoreCase(database.getTrees().get(i).getName())) {
 
                 exist = true;
                 product = database.getTrees().get(i);

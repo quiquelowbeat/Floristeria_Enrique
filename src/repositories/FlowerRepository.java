@@ -22,14 +22,14 @@ public class FlowerRepository {
         return database.getFlowers().add(flower);
     }
 
-    public boolean removeFlower(int id){
+    public boolean removeFlower(String name){
 
         boolean exist = false;
         int i = 0;
 
         while(!exist && i<database.getFlowers().size()){
 
-            if(id == database.getFlowers().get(i).getId()){
+            if(name.equalsIgnoreCase(database.getFlowers().get(i).getName())){
                 exist = true;
                 database.getFlowers().remove(i);
             }
@@ -38,14 +38,14 @@ public class FlowerRepository {
         return exist;
     }
 
-    public Product findOne (int id){
+    public Product findOne (String name){
         Product product = null;
         boolean exist = false;
         int i = 0;
 
         while (!exist && i< database.getFlowers().size()) {
 
-            if (id == database.getFlowers().get(i).getId()) {
+            if (name.equalsIgnoreCase(database.getFlowers().get(i).getName())) {
 
                 exist = true;
                 product = database.getFlowers().get(i);

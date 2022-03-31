@@ -22,23 +22,23 @@ public class TicketService {
         this.decorRepository = decorRepository;
     }
 
-    public boolean addProduct(Ticket ticket, int id) {
+    public boolean addProduct(Ticket ticket, String name) {
 
         boolean result = false;
-        Product tree = treeRepository.findOne(id);
-        Product flower = flowerRepository.findOne(id);
-        Product decor = decorRepository.findOne(id);
+        Product tree = treeRepository.findOne(name);
+        Product flower = flowerRepository.findOne(name);
+        Product decor = decorRepository.findOne(name);
         if(tree != null ){
             ticket.getProducts().add(tree);
-            treeRepository.removeTree(id);
+            treeRepository.removeTree(name);
             result = true;
         }else if(flower != null){
             ticket.getProducts().add(flower);
-            flowerRepository.removeFlower(id);
+            flowerRepository.removeFlower(name);
             result = true;
         }else if(decor != null){
             ticket.getProducts().add(decor);
-            decorRepository.removeDecor(id);
+            decorRepository.removeDecor(name);
             result = true;
         }
         return result;

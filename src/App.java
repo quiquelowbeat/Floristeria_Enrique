@@ -42,6 +42,7 @@ public class App {
                 switch (choice){
 
                     case 0:
+
                         boolean select;
                         select = Keyboard.leerSiNo("""
                             SAVE CHANGES IN DATABASE?
@@ -50,6 +51,7 @@ public class App {
                             database.writeDataToFiles();
                         }
                         View.closedSoftware();
+
                         break;
                     case 1:
                         View.treeAdded(treeRepository.addTree(treeRepository.createTree(Keyboard.readString("ENTER NAME"),
@@ -77,15 +79,15 @@ public class App {
                         break;
 
                     case 5:
-                        View.showRemoveMessageConfirmation(treeRepository.removeTree(Keyboard.readInt("ENTER ID")));
+                        View.showRemoveMessageConfirmation(treeRepository.removeTree(Keyboard.readString("ENTER NAME")));
                         break;
 
                     case 6:
-                        View.showRemoveMessageConfirmation(flowerRepository.removeFlower(Keyboard.readInt("ENTER ID")));
+                        View.showRemoveMessageConfirmation(flowerRepository.removeFlower(Keyboard.readString("ENTER NAME")));
                         break;
 
                     case 7:
-                        View.showRemoveMessageConfirmation(decorRepository.removeDecor(Keyboard.readInt("ENTER ID")));
+                        View.showRemoveMessageConfirmation(decorRepository.removeDecor(Keyboard.readString("ENTER NAME")));
                         break;
 
                     case 8:
@@ -101,11 +103,15 @@ public class App {
                         String x;
                         Ticket ticket = ticketRepository.createTicket();
                         do {
-                            View.productAdded(ticketService.addProduct(ticket, Keyboard.readInt("ENTER ID")));
+                            View.productAdded(ticketService.addProduct(ticket, Keyboard.readString("ENTER NAME")));
                             x = Keyboard.readString("1-ADD PRODUCT" + "\n0-EXIT");
                         }while (!x.equalsIgnoreCase("0"));
-                        ticketService.total(ticket);
-                        View.ticketAdded(ticketRepository.addTicket(ticket));
+                        if (!ticket.getProducts().isEmpty()){
+                            ticketService.total(ticket);
+                            View.ticketAdded(ticketRepository.addTicket(ticket));
+                        }else {
+                            View.showMessage("TICKET NOT ADDED, PRODUCT LIST EMPTY");
+                        }
                         break;
 
                     case 11:
