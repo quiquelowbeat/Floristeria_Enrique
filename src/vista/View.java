@@ -10,34 +10,37 @@ public class View {
 
     public static void showStock(List<Product> trees, List<Product> flowers, List<Product> decorations) {
         System.out.println("TREES:");
-        trees.forEach(x -> {
-            Tree tree = (Tree) x;
-            System.out.println("ID: " + tree.getId() +
-                    " NAME: " + tree.getName() +
-                    " HEIGHT: " + tree.getHeight() +
-                    " PRICE: " + tree.getPrice() + "€");
-        });
+        if(!trees.isEmpty()){
+            trees.forEach(x -> {
+                Tree tree = (Tree) x;
+                System.out.println(tree.showInfo());
+            });
+        } else {
+            System.out.println("NO STOCK\n");
+        }
         System.out.println("FLOWERS:");
-        flowers.forEach(x -> {
-            Flower flower = (Flower) x;
-            System.out.println("ID: " + flower.getId() +
-                    " NAME: " + flower.getName() +
-                    " COLOR: " + flower.getcolor() +
-                    " PRICE: " + flower.getPrice() + "€");
-        });
+        if(!flowers.isEmpty()){
+            flowers.forEach(x -> {
+                Flower flower = (Flower) x;
+                System.out.println(flower.showInfo());
+            });
+        } else {
+            System.out.println("NO STOCK\n");
+        }
         System.out.println("DECORATIONS:");
-        decorations.forEach(x -> {
-            Decor decor = (Decor) x;
-            System.out.println("ID: " + decor.getId() +
-                    " NAME: " + decor.getName() +
-                    " MATERIAL: " + decor.getMaterial() +
-                    " PRICE: " + decor.getPrice() + "€");
-        });
+        if(!decorations.isEmpty()){
+            decorations.forEach(x -> {
+                Decor decor = (Decor) x;
+                System.out.println(decor.showInfo());
+            });
+        } else {
+            System.out.println("NO STOCK\n");
+        }
     }
 
     public static void showTotalValueFlorist(double totalValue) {
 
-        System.out.println("TOTAL VALUE:" + totalValue + "€");
+        System.out.println("TOTAL VALUE: " + totalValue + "€");
 
     }
 
@@ -81,9 +84,9 @@ public class View {
 
     }
 
-    public static void showRemoveMessageConfirmation(boolean exist) { // Revisar
+    public static void showRemoveMessageConfirmation(boolean exist) {
         if (exist) {
-            System.out.println("PRODUCT SUCCESSFULLY REMOVE.");
+            System.out.println("PRODUCT SUCCESSFULLY REMOVED.");
         } else {
             System.out.println("PRODUCT NOT FOUND.");
         }
@@ -155,6 +158,27 @@ public class View {
 
     public static void showMessage (String message){
         System.out.println(message);
+    }
+
+    public static void closedSoftware () {
+        System.out.println("SOFTWARE SUCCESSFULLY CLOSED");
+    }
+
+    public static void formatError () {
+        System.out.println("FORMAT ERROR");
+    }
+
+    public static void invalidInformation () {
+        System.out.println("INPUT NOT VALID");
+    }
+
+    public static void introductionErrorString () {
+        System.out.println("ERROR INPUT STRING.");
+
+    }
+
+    public static void fileNotFound(){
+        System.out.println("FILE NOT FOUND.");
     }
 
 }

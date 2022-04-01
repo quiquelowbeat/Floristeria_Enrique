@@ -7,9 +7,9 @@ public abstract class Product implements Serializable {
 
     static int nextId = 1;
 
-    protected int id;
-    protected String name;
-    protected double price;
+    private int id;
+    private String name;
+    private double price;
 
     public Product(String name, double price){
 

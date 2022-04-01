@@ -9,12 +9,8 @@ public class Tree extends Product {
         this.height = height;
     }
 
-    public double getHeight() {
-        return this.height;
-    }
-
     @Override
     public String showInfo() {
-        return "ID: " + super.id + "\nNombre árbol: " + super.name + "\nAltura: " + this.height + "\nPrecio: " + super.price + "€";
+        return "Nombre árbol: " + super.getName() + "\nAltura: " + this.height + "\nPrecio: " + super.getPrice() + "€\n";
     }
 }

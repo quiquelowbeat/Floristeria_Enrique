@@ -156,7 +156,7 @@ public class Keyboard {
             try {
                 cadena = sc.nextLine().toUpperCase();
                 correcto = true;
-                if (cadena.charAt(0) == 'S') {
+                if (cadena.charAt(0) == 'Y') {
                     retorno = true;
                 } else if (cadena.charAt(0) == 'N') {
                     retorno = false;
