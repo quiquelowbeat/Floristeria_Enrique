@@ -34,17 +34,15 @@ public class Database {
     public List<Product> getDecorations(){ return decorations; }
     public List<Ticket> getTickets() { return tickets;}
 
-
-    public void setTrees(List<Product> trees) { this.trees = trees; }
-    public void setFlowers(List<Product> flowers) { this.flowers = flowers; }
-    public void setDecorations(List<Product> decorations) { this.decorations = decorations; }
-    public void setTickets(List<Ticket> tickets) { this.tickets = tickets; }
-
     // Métodos de escritura y lectura de archivos.
 
     public void writeDataToFiles() {
+        /*
+        Con el método writeDataToFiles() conseguimos transformar un ArrayList de productos a un archivo txt con el código de bytes
+        del objeto de una manera que Java podrá comprender a posteriori. Para ello creamos un objeto ObjectOutputStream que recibe un
+        objeto FileOutputStream que creará el archivo en la ruta especificada usando pathnames.
+         */
         ObjectOutputStream writeFile = null;
-        // System.out.println(Database.configDirectory());
         try {
             writeFile = new ObjectOutputStream(new FileOutputStream(String.valueOf(pathNames[0])));
             writeFile.writeObject(this.trees);
@@ -63,11 +61,17 @@ public class Database {
     }
 
     public void readDataFromFiles() {
+        /*
+        Creamos método de lectura de los archivos 'txt' que creamos en el método anterior.
+        Usamos un objeto tipo ObjectInputStream al que le pasamos otro objeto FileInputStream que apunta al archivo txt deseado.
+        Lo que hacemos es coger el fichero txt con la codificación de bytes del objeto que hemos creado en el método anterior y
+        lo transformamos a un objeto ArrayList<Product> que Java puede leer.
+         */
+
         ObjectInputStream readFile = null;
-        // System.out.println(Database.configDirectory());
         try {
             readFile = new ObjectInputStream(new FileInputStream(String.valueOf(pathNames[0])));
-            trees = ((ArrayList<Product>) readFile.readObject()); // Hacemos cast porque readFile devuelve un Object.
+            trees = ((ArrayList<Product>) readFile.readObject()); // Hacemos cast porque readFile devuelve un Object genérico y debemos pasar a <Product>.
             readFile = new ObjectInputStream(new FileInputStream(String.valueOf(pathNames[1])));
             flowers = (ArrayList<Product>) readFile.readObject();
             readFile = new ObjectInputStream(new FileInputStream(String.valueOf(pathNames[2])));
@@ -83,6 +87,12 @@ public class Database {
     }
 
     public static void configDatabase(Database database) {
+        /*
+        Método de configuración previa para crear los archivos en caso de que no existan en el directorio del usuario usando una condicional.
+        Inicialmente el método comprueba que los archivos existan. Si alguno o todos no existen, los crea vacíos. Hacemos esto
+        porque después de testear en Windows vimos que el método writeDataToFiles() no funcionaba si el archivo no existía de antemano.
+        Después de esta condición inicial, lee los archivos con normalidad para recuperar los datos guardados si hubieran.
+         */
         File file;
         try {
             if(!Files.exists(pathNames[0]) && !Files.exists(pathNames[1])
@@ -105,6 +115,10 @@ public class Database {
     }
 
     public static File configDirectory(){
+        /*
+        Método para crear el directorio de destino del programa. Hacemos una condicional según el sistema operativo destino del usuario.
+        Finalmente guardamos la ruta del directorio final en la variable "currentDirectory" que usaremos en el resto de métodos de la clase.
+         */
 
         String osName = System.getProperty("os.name").toLowerCase();
 

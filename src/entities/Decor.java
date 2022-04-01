@@ -21,12 +21,8 @@ public class Decor extends Product {
         return select;
     }
 
-    public String getMaterial() {
-        return this.typeOfMaterial;
-    }
-
     @Override
     public String showInfo() {
-        return "ID: " + super.getId() + "\nNombre decoración: " + super.getName() + "\nMaterial: " + this.typeOfMaterial + "\nPrecio: " + super.getPrice() + "€";
+        return "Nombre decoración: " + super.getName() + "\nMaterial: " + this.typeOfMaterial + "\nPrecio: " + super.getPrice() + "€\n";
     }
 }

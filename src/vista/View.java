@@ -10,20 +10,32 @@ public class View {
 
     public static void showStock(List<Product> trees, List<Product> flowers, List<Product> decorations) {
         System.out.println("TREES:");
-        trees.forEach(x -> {
-            Tree tree = (Tree) x;
-            System.out.println(tree.showInfo());
-        });
+        if(!trees.isEmpty()){
+            trees.forEach(x -> {
+                Tree tree = (Tree) x;
+                System.out.println(tree.showInfo());
+            });
+        } else {
+            System.out.println("NO STOCK\n");
+        }
         System.out.println("FLOWERS:");
-        flowers.forEach(x -> {
-            Flower flower = (Flower) x;
-            System.out.println(flower.showInfo());
-        });
+        if(!flowers.isEmpty()){
+            flowers.forEach(x -> {
+                Flower flower = (Flower) x;
+                System.out.println(flower.showInfo());
+            });
+        } else {
+            System.out.println("NO STOCK\n");
+        }
         System.out.println("DECORATIONS:");
-        decorations.forEach(x -> {
-            Decor decor = (Decor) x;
-            System.out.println(decor.showInfo());
-        });
+        if(!decorations.isEmpty()){
+            decorations.forEach(x -> {
+                Decor decor = (Decor) x;
+                System.out.println(decor.showInfo());
+            });
+        } else {
+            System.out.println("NO STOCK\n");
+        }
     }
 
     public static void showTotalValueFlorist(double totalValue) {
@@ -72,7 +84,7 @@ public class View {
 
     }
 
-    public static void showRemoveMessageConfirmation(boolean exist) { // Revisar
+    public static void showRemoveMessageConfirmation(boolean exist) {
         if (exist) {
             System.out.println("PRODUCT SUCCESSFULLY REMOVED.");
         } else {

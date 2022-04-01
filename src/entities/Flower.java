@@ -9,12 +9,8 @@ public class Flower extends Product {
         this.color = color;
     }
 
-    public String getcolor() {
-        return this.color;
-    }
-
     @Override
     public String showInfo() {
-        return "ID: " + super.getId() + "\nNombre flor: " + super.getName() + "\nColor: " + this.color + "\nPrecio: " + super.getPrice() + "€";
+        return "Nombre flor: " + super.getName() + "\nColor: " + this.color + "\nPrecio: " + super.getPrice() + "€\n";
     }
 }
