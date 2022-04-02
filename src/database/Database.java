@@ -116,17 +116,10 @@ public class Database {
 
     public static File configDirectory(){
         /*
-        Método para crear el directorio de destino del programa. Hacemos una condicional según el sistema operativo destino del usuario.
-        Finalmente guardamos la ruta del directorio final en la variable "currentDirectory" que usaremos en el resto de métodos de la clase.
+        Método para crear el directorio de destino del programa. Guardamos la ruta del directorio final
+        en la variable "currentDirectory" que usaremos en el resto de métodos de la clase.
          */
-
-        String osName = System.getProperty("os.name").toLowerCase();
-
-        if(osName.contains("mac") || osName.contains("nix") || osName.contains("nux") || osName.contains("aix")){
-            currentDirectory = new File(System.getProperty("user.dir") + File.separator + "database");
-        } else {
-            currentDirectory = new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "database");
-        }
+        File currentDirectory = new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "database");
 
         return currentDirectory;
 
