@@ -119,9 +119,7 @@ public class Database {
         Método para crear el directorio de destino del programa. Guardamos la ruta del directorio final
         en la variable "currentDirectory" que usaremos en el resto de métodos de la clase.
          */
-        File currentDirectory = new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "database");
-
-        return currentDirectory;
+        return new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "database");
 
     }
 
